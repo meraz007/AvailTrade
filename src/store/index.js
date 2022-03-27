@@ -7,6 +7,7 @@ export default createStore({
     slider:[],
     right_three_product:[],
     just_for_you:[],
+    sCategoryList:[],
   },
   mutations: {
     SET_PRIMARY_CATEGORY_LIST(state, primary_category_list) {
@@ -20,6 +21,9 @@ export default createStore({
     },
     JUST_FOR_YOU(state,just_for_you){
       state.just_for_you=just_for_you
+    },
+    SECONDARY_TERTIARY_CATEGORY_LIST(state,sCategoryList){
+      state.sCategoryList=sCategoryList
     }
 
 },
@@ -59,6 +63,16 @@ export default createStore({
     try {
       const data = await axios.get('https://availtrade.com/api/homejustforproduct')
         commit('JUST_FOR_YOU', data.data)
+      }
+      catch (error) {
+          alert(error)
+          console.log(error)
+      }
+  },
+  async fetchSecondaryTertiaryCatgeoryList({ commit }) {
+    try {
+      const data = await axios.get('https://availtrade.com/api/secondarytertiarycatgeorylist')
+        commit('SECONDARY_TERTIARY_CATEGORY_LIST', data.data)
       }
       catch (error) {
           alert(error)
