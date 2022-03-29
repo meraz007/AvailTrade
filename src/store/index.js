@@ -9,6 +9,14 @@ export default createStore({
     just_for_you:[],
     sCategoryList:[],
   },
+  getters:{
+    tertiarycategoryID(state){
+      return state.sCategoryList.tertiarycategorys
+    },
+    getCategory(state,getters){
+      return state.sCategoryList.find(list =>list.id===getters.tertiarycategoryID)
+    }
+  },
   mutations: {
     SET_PRIMARY_CATEGORY_LIST(state, primary_category_list) {
       state.primary_category_list = primary_category_list
@@ -27,7 +35,6 @@ export default createStore({
     }
 
 },
-  getters:{},
   actions: {
     async fetchProductList({ commit }) {
       try {
